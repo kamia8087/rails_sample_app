@@ -947,3 +947,215 @@ Migrating to AddPasswordDigestToUsers (20190527091608)
   [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Michael Hartl"], ["email", "mhartl@example.com"], ["created_at", "2019-05-27 09:22:35.030452"], ["updated_at", "2019-05-27 09:22:35.030452"], ["password_digest", "$2a$10$GCZ9NrZooVLwmAtpOGgOAuKrwRRrlPSaOykhF8kAnQefAeMmgVip."]]
   [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
   [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "mhartl@example.com"], ["LIMIT", 1]]
+Started GET "/" for 127.0.0.1 at 2019-05-28 11:31:47 +0530
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (504.0ms)
+  Rendered layouts/_rails_default.html.erb (45.2ms)
+  Rendered layouts/_shim.html.erb (0.7ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 595ms (Views: 587.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2019-05-28 11:31:51 +0530
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.7ms)
+  Rendered users/new.html.erb within layouts/application (572.7ms)
+  Rendered layouts/_rails_default.html.erb (23.8ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 636ms (Views: 616.0ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/signup" for 127.0.0.1 at 2019-05-28 11:32:11 +0530
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rcHYWfJTgC/ZpK+d0h6KhpOTXKPiIySROYjLcDxfNCT1RjMpugomT83RVfegjhZYsGq0Ax6ZM9Hv3r+VNGnulw==", "user"=>{"name"=>"Kamia Uppal", "email"=>"kamia_uppal@yahoo.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (1.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "kamia_uppal@yahoo.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Kamia Uppal"], ["email", "kamia_uppal@yahoo.com"], ["created_at", "2019-05-28 06:02:11.235964"], ["updated_at", "2019-05-28 06:02:11.235964"], ["password_digest", "$2a$10$Bfrl9O/EVQs/8ifHyCosjOJRYN1WNdTPOeobJ2GJp7rcVDh86xOWq"]]
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 88ms (ActiveRecord: 6.2ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2019-05-28 11:32:11 +0530
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (271.6ms)
+Completed 500 Internal Server Error in 289ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `options' for #<#<Class:0x007fc07a642a20>:0x007fc07a41b990>
+Did you mean?  url_options):
+    2:   <aside class="col-md-4">
+    3:     <section class="user_info">
+    4:       <h1>
+    5:         <%= gravatar_for @user %>
+    6:         <%= @user.name %>
+    7:       </h1>
+    8:     </section>
+  
+app/helpers/users_helper.rb:4:in `gravatar_for'
+app/views/users/show.html.erb:5:in `_app_views_users_show_html_erb__3052535243445733920_70232330797760'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20190527072258)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190527072258"]]
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddIndexToUsersEmail (20190527090823)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190527090823"]]
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddPasswordDigestToUsers (20190527091608)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "password_digest" varchar[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190527091608"]]
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-05-28 06:07:32.204323"], ["updated_at", "2019-05-28 06:07:32.204323"]]
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+Started GET "/users/2" for 127.0.0.1 at 2019-05-28 11:37:51 +0530
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 404 Not Found in 6ms (ActiveRecord: 0.8ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=2):
+  
+app/controllers/users_controller.rb:4:in `show'
+Started GET "/signup" for 127.0.0.1 at 2019-05-28 11:41:35 +0530
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.4ms)
+  Rendered users/new.html.erb within layouts/application (4.8ms)
+  Rendered layouts/_rails_default.html.erb (24.3ms)
+  Rendered layouts/_shim.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 54ms (Views: 46.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2019-05-28 11:41:37 +0530
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.4ms)
+  Rendered users/new.html.erb within layouts/application (4.8ms)
+  Rendered layouts/_rails_default.html.erb (22.5ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 44ms (Views: 41.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/signup" for 127.0.0.1 at 2019-05-28 11:42:01 +0530
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1hdUfAcsXkQpE/ylA2zSMCmvbLSf2IWIjSTqnRDiaWV+6DwRJBFTy22vpmNjd7yg4qMQiMCf5JeW9UQseRLt0A==", "user"=>{"name"=>"Name", "email"=>"email@email.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Name"], ["email", "email@email.com"], ["created_at", "2019-05-28 06:12:01.946971"], ["updated_at", "2019-05-28 06:12:01.946971"], ["password_digest", "$2a$10$vXb04CZ7l01dKfu1mDsVNOB7I3eJqYRsSe34LaJOJrvmDHiSGZjae"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 85ms (ActiveRecord: 2.8ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-05-28 11:42:01 +0530
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (262.4ms)
+Completed 500 Internal Server Error in 270ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `options' for #<#<Class:0x007fc0795c9248>:0x007fc075b191e8>
+Did you mean?  url_options):
+    2:   <aside class="col-md-4">
+    3:     <section class="user_info">
+    4:       <h1>
+    5:         <%= gravatar_for @user %>
+    6:         <%= @user.name %>
+    7:       </h1>
+    8:     </section>
+  
+app/helpers/users_helper.rb:4:in `gravatar_for'
+app/views/users/show.html.erb:5:in `_app_views_users_show_html_erb__3052535243445733920_70232292524200'
+Started GET "/" for 127.0.0.1 at 2019-05-28 11:46:20 +0530
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_rails_default.html.erb (54.8ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (1.7ms)
+Completed 200 OK in 87ms (Views: 81.9ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2019-05-28 11:46:25 +0530
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.7ms)
+  Rendered users/new.html.erb within layouts/application (5.6ms)
+  Rendered layouts/_rails_default.html.erb (44.2ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 83ms (Views: 63.7ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/signup" for 127.0.0.1 at 2019-05-28 11:46:37 +0530
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"W49vfF2gA4lYjrQ7UDZeLfKc9si2Rp7+hLfjOk9lzUMDCIQMFfml6Uz7TlEipsLz0WUeaEr8ib5S4ZffR1MX8A==", "user"=>{"name"=>"khkjh", "email"=>"kjhkjh@kjhkjh.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "kjhkjh@kjhkjh.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "khkjh"], ["email", "kjhkjh@kjhkjh.com"], ["created_at", "2019-05-28 06:16:37.177102"], ["updated_at", "2019-05-28 06:16:37.177102"], ["password_digest", "$2a$10$TsyZNk7S9ZfV79XwierRWeUQTbvD8pATMdWifXyc9BGEneXbBaDle"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 78ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2019-05-28 11:46:37 +0530
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_rails_default.html.erb (23.1ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 41ms (Views: 37.2ms | ActiveRecord: 0.5ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "khkjh"], ["LIMIT", 1]]
